@@ -3,8 +3,9 @@ export interface ComponentItem {
   content: string;
   type: 'button' | 'textfield' | 'modal' | 'card' | 'expandable-list' | 'tab-navigation' | 'searchable-dropdown' |
         'map-marker' | 'resource-item' | 'personnel' | 'emergency-event' | 'affected-area' | 'route-planning' |
-        'tracking-item' | 'task-list' | 'alert' | 'essential-supply';
+        'tracking-item' | 'task-list' | 'alert' | 'essential-supply' | 'draggable-map' ;
   props: {
+    zoom: number;
     text?: string;
     action?: string;
     placeholder?: string;
@@ -26,7 +27,8 @@ export interface ComponentItem {
     urgency?: 'low' | 'medium' | 'high';
     color?: string;
     style?: React.CSSProperties;
-  
+    location?:string;
+    way?:string;
     
   };
 }

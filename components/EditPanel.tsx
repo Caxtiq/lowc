@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { ComponentItem } from '@/types/ComponentItem';
+import { InfoIcon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 interface EditPanelProps {
@@ -244,7 +246,17 @@ export const EditPanel: React.FC<EditPanelProps> = ({ selectedItem, onItemUpdate
             />
           </div>
           <div className="mb-4">
-            <Label htmlFor="type">Resource Type</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="type">Resource Type</Label>
+              <Popover>
+                <PopoverTrigger>
+                  <InfoIcon className="h-4 w-4 text-muted-foreground" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <p>Select the type of resource. This helps in categorizing and managing different kinds of supplies.</p>
+                </PopoverContent>
+              </Popover>
+            </div>
             <Select name="type" value={editedItem.props.type || ''} onValueChange={(value) => handleChange({ target: { name: 'type', value } })}>
               <SelectTrigger>
                 <SelectValue placeholder="Select resource type" />
@@ -258,7 +270,17 @@ export const EditPanel: React.FC<EditPanelProps> = ({ selectedItem, onItemUpdate
             </Select>
           </div>
           <div className="mb-4">
-            <Label htmlFor="quantity">Quantity</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="quantity">Quantity</Label>
+              <Popover>
+                <PopoverTrigger>
+                  <InfoIcon className="h-4 w-4 text-muted-foreground" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <p>Enter the amount of this resource available. Use whole numbers.</p>
+                </PopoverContent>
+              </Popover>
+            </div>
             <Input
               id="quantity"
               name="quantity"
@@ -303,6 +325,13 @@ export const EditPanel: React.FC<EditPanelProps> = ({ selectedItem, onItemUpdate
               id="title"
               name="title"
               value={editedItem.props.title || ''}
+              onChange={handleChange}
+            />
+            <Label htmlFor="location">Location</Label>
+            <Input
+              id="location"
+              name="location"
+              value={editedItem.props.location || ''}
               onChange={handleChange}
             />
           </div>
@@ -364,32 +393,34 @@ export const EditPanel: React.FC<EditPanelProps> = ({ selectedItem, onItemUpdate
       )}
       {editedItem.type === 'route-planning' && (
         <>
-<div className="mb-4">
-  <Label htmlFor="title">Route Name</Label>
-  <Input
-    id="title"
-    name="title"
-    value={editedItem.props.title || ''}
-    onChange={handleChange}
-  />
-</div>
-
-<div className="mb-4">
-  <Label htmlFor="route.end">End Point</Label>
-  <Input
-    id="route.end"
-    name="route.end"
-    value={editedItem.props.route?.end || ''}
-    onChange={(e) => {
-      const newRoute = { ...editedItem.props.route, end: e.target.value };
-      handleChange({
-        target: { name: 'route', value: newRoute as unknown as string },
-      });
-    }}
-  />
-</div>
-
-
+          <div className="mb-4">
+            <Label htmlFor="title">Route Name</Label>
+            <Input
+              id="title"
+              name="title"
+              value={editedItem.props.title || ''}
+              onChange={handleChange}
+            />
+            <Label htmlFor="way">Googlemap link</Label>
+            <Input
+              id="way"
+              name="way"
+              value={editedItem.props.title || ''}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="route.start">Start Point</Label>
+            <Input
+              id="route.start"
+              name="route.start"
+              value={editedItem.props.route?.start || ''}
+              onChange={(e) => {
+                const newRoute = { ...editedItem.props.route, start: e.target.value };
+                handleChange({ target: { name: 'route', value: newRoute as unknown as string } });
+              }}
+            />
+          </div>
           <div className="mb-4">
             <Label htmlFor="route.end">End Point</Label>
             <Input
@@ -397,10 +428,7 @@ export const EditPanel: React.FC<EditPanelProps> = ({ selectedItem, onItemUpdate
               name="route.end"
               value={editedItem.props.route?.end || ''}
               onChange={(e) => {
-                const newRoute = {
-                  ...editedItem.props.route,
-                  end: e.target.value
-                };
+                const newRoute = { ...editedItem.props.route, end: e.target.value };
                 handleChange({ target: { name: 'route', value: newRoute as unknown as string } });
               }}
             />
@@ -534,6 +562,41 @@ export const EditPanel: React.FC<EditPanelProps> = ({ selectedItem, onItemUpdate
               name="quantity"
               type="number"
               value={editedItem.props.quantity || 0}
+              onChange={handleNumberChange}
+            />
+          </div>
+        </>
+      )}
+      {editedItem.type === 'draggable-map' && (
+        <>
+          <div className="mb-4">
+            <Label htmlFor="title">Map Title</Label>
+            <Input
+              id="title"
+              name="title"
+              value={editedItem.props.title || ''}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="latitude">Initial Latitude</Label>
+            <Input
+              id="latitude"
+              name="latitude"
+              type="number"
+              step="any"
+              value={editedItem.props.latitude || 51.505}
+              onChange={handleNumberChange}
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="longitude">Initial Longitude</Label>
+            <Input
+              id="longitude"
+              name="longitude"
+              type="number"
+              step="any"
+              value={editedItem.props.longitude || -0.09}
               onChange={handleNumberChange}
             />
           </div>

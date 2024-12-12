@@ -13,23 +13,75 @@ import { Sidebar } from './Sidebar';
 
 const YouOwnProject: React.FC = () => {
   const [sidebarItems] = useState<ComponentItem[]>([
-    { id: 'button', content: 'Button', type: 'button', props: { text: 'Click me', action: 'console.log("Button clicked")', color: '#ffffff' } },
-    { id: 'textfield', content: 'Text Field', type: 'textfield', props: { placeholder: 'Enter text', color: '#ffffff' } },
-    { id: 'modal', content: 'Modal Dialog', type: 'modal', props: { title: 'Modal Title', content: 'Modal Content', color: '#ffffff' } },
-    { id: 'card', content: 'Card View', type: 'card', props: { title: 'Card Title', content: 'Card Content', color: '#ffffff' } },
-    { id: 'expandable-list', content: 'Expandable List', type: 'expandable-list', props: { items: ['Item 1', 'Item 2', 'Item 3'], color: '#ffffff' } },
-    { id: 'tab-navigation', content: 'Tab Navigation', type: 'tab-navigation', props: { tabs: [{ label: 'Tab 1', content: 'Content 1' }, { label: 'Tab 2', content: 'Content 2' }], color: '#ffffff' } },
-    { id: 'searchable-dropdown', content: 'Searchable Dropdown', type: 'searchable-dropdown', props: { options: [{ value: 'option1', label: 'Option 1' }, { value: 'option2', label: 'Option 2' }], color: '#ffffff' } },
-    { id: 'map-marker', content: 'Map Marker', type: 'map-marker', props: { title: 'New Marker', latitude: 0, longitude: 0, color: '#ffffff' } },
-    { id: 'resource-item', content: 'Resource Item', type: 'resource-item', props: { title: 'New Resource', type: 'Food', quantity: 0, color: '#ffffff' } },
-    { id: 'personnel', content: 'Personnel', type: 'personnel', props: { title: 'New Personnel', specialty: 'Medical', color: '#ffffff' } },
-    { id: 'emergency-event', content: 'Emergency Event', type: 'emergency-event', props: { title: 'New Emergency', type: 'Flood', severity: 'High', color: '#ffffff' } },
-    { id: 'affected-area', content: 'Affected Area', type: 'affected-area', props: { title: 'New Affected Area', type: 'Flood Zone', color: '#ffffff' } },
-    { id: 'route-planning', content: 'Route Planning', type: 'route-planning', props: { title: 'New Route', route: { start: '', end: '' }, color: '#ffffff' } },
-    { id: 'tracking-item', content: 'Tracking Item', type: 'tracking-item', props: { title: 'New Tracking Item', status: 'In Progress', progress: 0, color: '#ffffff' } },
-    { id: 'task-list', content: 'Task List', type: 'task-list', props: { title: 'New Task List', items: ['Task 1', 'Task 2'], color: '#ffffff' } },
-    { id: 'alert', content: 'Alert', type: 'alert', props: { title: 'New Alert', content: 'Alert content', urgency: 'medium', color: '#ffffff' } },
-    { id: 'essential-supply', content: 'Essential Supply', type: 'essential-supply', props: { title: 'New Supply', type: 'Medical', quantity: 0, color: '#ffffff' } },
+    { id: 'button', content: 'Button', type: 'button', props: {
+      text: 'Click me', action: 'console.log("Button clicked")', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'textfield', content: 'Text Field', type: 'textfield', props: {
+      placeholder: 'Enter text', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'modal', content: 'Modal Dialog', type: 'modal', props: {
+      title: 'Modal Title', content: 'Modal Content', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'card', content: 'Card View', type: 'card', props: {
+      title: 'Card Title', content: 'Card Content', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'expandable-list', content: 'Expandable List', type: 'expandable-list', props: {
+      items: ['Item 1', 'Item 2', 'Item 3'], color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'tab-navigation', content: 'Tab Navigation', type: 'tab-navigation', props: {
+      tabs: [{ label: 'Tab 1', content: 'Content 1' }, { label: 'Tab 2', content: 'Content 2' }], color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'searchable-dropdown', content: 'Searchable Dropdown', type: 'searchable-dropdown', props: {
+      options: [{ value: 'option1', label: 'Option 1' }, { value: 'option2', label: 'Option 2' }], color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'map-marker', content: 'Map Marker', type: 'map-marker', props: {
+      title: 'New Marker', latitude: 0, longitude: 0, color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'resource-item', content: 'Resource Item', type: 'resource-item', props: {
+      title: 'New Resource', type: 'Food', quantity: 0, color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'personnel', content: 'Personnel', type: 'personnel', props: {
+      title: 'New Personnel', specialty: 'Medical', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'emergency-event', content: 'Emergency Event', type: 'emergency-event', props: {
+      title: 'New Emergency', type: 'Flood', severity: 'High', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'affected-area', content: 'Affected Area', type: 'affected-area', props: {
+      title: 'New Affected Area', type: 'Flood Zone', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'route-planning', content: 'Route Planning', type: 'route-planning', props: {
+      title: 'New Route', route: { start: '', end: '' }, color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'tracking-item', content: 'Tracking Item', type: 'tracking-item', props: {
+      title: 'New Tracking Item', status: 'In Progress', progress: 0, color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'task-list', content: 'Task List', type: 'task-list', props: {
+      title: 'New Task List', items: ['Task 1', 'Task 2'], color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'alert', content: 'Alert', type: 'alert', props: {
+      title: 'New Alert', content: 'Alert content', urgency: 'medium', color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'essential-supply', content: 'Essential Supply', type: 'essential-supply', props: {
+      title: 'New Supply', type: 'Medical', quantity: 0, color: '#ffffff',
+      zoom: 0
+    } },
+    { id: 'draggable-map', content: 'Draggable Map', type: 'draggable-map', props: { title: 'Interactive Map', zoom: 13, color: '#ffffff' } },
   ]);
   const [droppedItems, setDroppedItems] = useState<ComponentItem[]>([]);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
@@ -119,7 +171,7 @@ const YouOwnProject: React.FC = () => {
             <DraggableItem
               item={sidebarItems.find((item) => item.id === activeId) ?? 
               droppedItems.find((item) => item.id === activeId) ?? 
-              { id: '', content: '', type: 'button', props: {} }}
+              { id: '', content: '', type: 'button', props: { zoom: 0 } }}
             />
           ) : null}
         </DragOverlay>
