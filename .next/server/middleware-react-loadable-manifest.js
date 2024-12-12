@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components\\\\DraggableItem.tsx -> ./DraggableMap\":{\"id\":\"components\\\\DraggableItem.tsx -> ./DraggableMap\",\"files\":[\"static/css/_app-pages-browser_components_DraggableMap_tsx.css\",\"static/chunks/_app-pages-browser_components_DraggableMap_tsx.js\"]}}"
